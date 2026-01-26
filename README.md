@@ -33,7 +33,7 @@ npx skills add trsoliu/mini-wiki
 
 ### Option 2: Download .skill file
 
-Download `wiki-generator.skill` from [Releases](https://github.com/trsoliu/mini-wiki/releases).
+Download `mini-wiki.skill` from [Releases](https://github.com/trsoliu/mini-wiki/releases).
 
 ### Option 3: Clone repository
 

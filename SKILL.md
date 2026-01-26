@@ -1,5 +1,5 @@
 ---
-name: wiki-generator
+name: mini-wiki
 description: |
   Automatically generate structured project Wiki from documentation, code, design files, and images.
   

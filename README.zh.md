@@ -33,7 +33,7 @@ npx skills add trsoliu/mini-wiki
 
 ### 方式 2：下载技能包
 
-从 [Releases](https://github.com/trsoliu/mini-wiki/releases) 下载 `wiki-generator.skill` 文件。
+从 [Releases](https://github.com/trsoliu/mini-wiki/releases) 下载 `mini-wiki.skill` 文件。
 
 ### 方式 3：克隆仓库
 
