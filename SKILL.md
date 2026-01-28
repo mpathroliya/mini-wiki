@@ -362,10 +362,13 @@ progressive:
 
 ### 版本检测机制
 
-在 `meta.json` 中记录文档生成版本：
+在 `meta.json` 中记录文档生成版本，并在每个文档页脚显示：
+
+**页脚格式**: `*由 [Mini-Wiki v{{ MINI_WIKI_VERSION }}](https://github.com/trsoliu/mini-wiki) 自动生成 | {{ GENERATED_AT }}*`
+
 ```json
 {
-  "generator_version": "2.0.0",
+  "generator_version": "3.0.1",  // 用于 {{ MINI_WIKI_VERSION }}
   "quality_standard": "professional-v2",
   "generated_at": "2026-01-28T21:15:00Z",
   "modules": {

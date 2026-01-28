@@ -174,7 +174,7 @@ flowchart TB
 
 ---
 
-*由 [Mini-Wiki](https://github.com/trsoliu/mini-wiki) 自动生成 | {{ GENERATED_AT }}*
+*由 [Mini-Wiki v{{ MINI_WIKI_VERSION }}](https://github.com/trsoliu/mini-wiki) 自动生成 | {{ GENERATED_AT }}*
 ```
 
 ---
@@ -462,7 +462,7 @@ flowchart LR
 
 ---
 
-*由 Mini-Wiki 自动生成 | {{ GENERATED_AT }}*
+*由 [Mini-Wiki v{{ MINI_WIKI_VERSION }}](https://github.com/trsoliu/mini-wiki) 自动生成 | {{ GENERATED_AT }}*
 ```
 
 ---
@@ -847,7 +847,7 @@ flowchart LR
 
 [← 返回模块列表](_index.md) | [查看 API 参考 →](../api/{{ MODULE_NAME }}.md)
 
-*由 Mini-Wiki 自动生成 | {{ GENERATED_AT }}*
+*由 [Mini-Wiki v{{ MINI_WIKI_VERSION }}](https://github.com/trsoliu/mini-wiki) 自动生成 | {{ GENERATED_AT }}*
 ```
 
 ---
@@ -1108,7 +1108,7 @@ classDiagram
 
 [← 返回 API 列表](_index.md) | [查看模块文档 →](../modules/{{ MODULE_NAME }}.md)
 
-*由 Mini-Wiki 自动生成 | {{ GENERATED_AT }}*
+*由 [Mini-Wiki v{{ MINI_WIKI_VERSION }}](https://github.com/trsoliu/mini-wiki) 自动生成 | {{ GENERATED_AT }}*
 ```
 
 ---
@@ -1290,7 +1290,7 @@ cp {{ CONFIG_TEMPLATE }} {{ CONFIG_FILE }}
 
 [← 返回首页](index.md) | [查看架构 →](architecture.md)
 
-*由 Mini-Wiki 自动生成 | {{ GENERATED_AT }}*
+*由 [Mini-Wiki v{{ MINI_WIKI_VERSION }}](https://github.com/trsoliu/mini-wiki) 自动生成 | {{ GENERATED_AT }}*
 ```
 
 ---
@@ -1403,7 +1403,7 @@ flowchart TB
 
 [← 返回首页](index.md)
 
-*由 Mini-Wiki 自动生成 | {{ GENERATED_AT }}*
+*由 [Mini-Wiki v{{ MINI_WIKI_VERSION }}](https://github.com/trsoliu/mini-wiki) 自动生成 | {{ GENERATED_AT }}*
 ```
 
 ---
