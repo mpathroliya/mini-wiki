@@ -5,8 +5,8 @@
 <br>
 
 [![skills.sh compatible](https://img.shields.io/badge/skills.sh-兼容-blue?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0wIDE4Yy00LjQxIDAtOC0zLjU5LTgtOHMzLjU5LTggOC04IDggMy41OSA4IDgtMy41OSA4LTggOHoiLz48L3N2Zz4=)](https://skills.sh)
-[![Version](https://img.shields.io/badge/版本-2.0.0-06B6D4?style=for-the-badge)](https://github.com/trsoliu/mini-wiki/releases)
-[![License](https://img.shields.io/badge/许可证-Apache--2.0-green?style=for-the-badge)](LICENSE)
+[![Version](https://img.shields.io/badge/version-2.1.0-06B6D4?style=for-the-badge)](https://github.com/trsoliu/mini-wiki/releases)
+[![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/trsoliu/mini-wiki?style=for-the-badge&color=yellow)](https://github.com/trsoliu/mini-wiki)
 
 **让 AI 自动将你的代码库转化为精美的结构化文档** 🚀
