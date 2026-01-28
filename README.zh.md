@@ -239,6 +239,69 @@ mini-wiki/
 
 ---
 
+## ❓ 常见问题
+
+<details>
+<summary><b>更新 Mini-Wiki 会删除已有的文档吗？</b></summary>
+
+**不会。** 更新 Mini-Wiki（技能/插件本身）只会更新生成规则和模板，**不会**自动删除或修改任何已生成的文档。
+
+```bash
+npx skills update trsoliu/mini-wiki  # 只更新 Mini-Wiki 代码
+```
+
+</details>
+
+<details>
+<summary><b>如何升级旧版本生成的低质量文档？</b></summary>
+
+使用以下命令升级现有文档：
+
+| 命令 | 行为 |
+|------|------|
+| `生成 wiki` | 增量更新 - 只更新变更的文件 |
+| `升级 wiki` | 检测并升级低质量文档，保留高质量的 |
+| `刷新全部 wiki` | 重新生成所有文档（会先备份） |
+
+质量自动评估：
+- **basic**（< 8 章节，无图表）→ 🔴 需要升级
+- **standard**（8-12 章节，1 个图表）→ 🟡 可选升级
+- **professional**（13+ 章节，2+ 图表）→ ✅ 保持不变
+
+</details>
+
+<details>
+<summary><b>升级时会保留我自定义的内容吗？</b></summary>
+
+**会的。** 使用 `<!-- user-content -->` 标记的内容会被保留：
+
+```markdown
+## 我的自定义章节
+<!-- user-content -->
+这部分内容在升级时不会被覆盖。
+<!-- /user-content -->
+```
+
+另外，所有文档在升级前都会自动备份到 `cache/backup/`。
+
+</details>
+
+<details>
+<summary><b>如何检查现有文档的质量？</b></summary>
+
+告诉你的 AI Agent：
+
+```
+🤖 "检查 wiki 质量"
+🤖 "check wiki quality"
+```
+
+这会生成一份质量评估报告，显示哪些文档需要升级。
+
+</details>
+
+---
+
 ## 🙏 灵感来源
 
 <table>
