@@ -5,11 +5,11 @@
 <br>
 
 [![skills.sh compatible](https://img.shields.io/badge/skills.sh-兼容-blue?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0wIDE4Yy00LjQxIDAtOC0zLjU5LTgtOHMzLjU5LTggOC04IDggMy41OSA4IDgtMy41OSA4LTggOHoiLz48L3N2Zz4=)](https://skills.sh)
-[![Version](https://img.shields.io/badge/version-2.1.0-06B6D4?style=for-the-badge)](https://github.com/trsoliu/mini-wiki/releases)
+[![Version](https://img.shields.io/badge/version-3.0.0-06B6D4?style=for-the-badge)](https://github.com/trsoliu/mini-wiki/releases)
 [![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/trsoliu/mini-wiki?style=for-the-badge&color=yellow)](https://github.com/trsoliu/mini-wiki)
 
-**让 AI 自动将你的代码库转化为精美的结构化文档** 🚀
+**让 AI 自动将你的代码库转化为专业级的结构化文档** 🚀
 
 [📖 English](README.md) · [🐛 报告问题](https://github.com/trsoliu/mini-wiki/issues) · [✨ 功能建议](https://github.com/trsoliu/mini-wiki/issues)
 
@@ -19,7 +19,7 @@
 
 ## ✨ Mini-Wiki 是什么？
 
-Mini-Wiki 是一个 [skills.sh](https://skills.sh) 兼容的技能包，让 AI Agent 能够**自动分析你的项目结构**，生成全面、结构化的 Wiki 文档 —— 轻松省心。
+Mini-Wiki 是一个 [skills.sh](https://skills.sh) 兼容的技能包，让 AI Agent 能够**深度分析你的代码库**，生成**专业级**的结构化 Wiki 文档，包含图表、交叉链接和详细说明 —— 轻松省心。
 
 <table>
 <tr>
@@ -35,10 +35,12 @@ Mini-Wiki 是一个 [skills.sh](https://skills.sh) 兼容的技能包，让 AI A
 <td width="50%">
 
 ### 🎉 使用 Mini-Wiki 之后
-- AI 自动生成文档 ✨
+- AI 生成**专业级**文档 ✨
 - 增量更新保持新鲜 🔄
 - 漂亮的 Mermaid 图表 📈
 - 代码块链接到源码 🎯
+- **深度代码分析**生成详细内容 🔬
+- **交叉链接**的文档网络 🔗
 
 </td>
 </tr>
@@ -162,9 +164,9 @@ Mini-Wiki 采用 **指令型插件系统**。当你运行任务时：
 
 - `code-complexity`: 代码健康度与复杂度分析
 - `paper-drafter`: 专家级学术论文生成 (LaTeX/IMRaD)
-- `repo-analytics`: Git 提交统计、贡献者与活跃度分析
-- `patent-generator`: 基于代码和Wiki生成专利交底书草稿
-- `api-doc-enhancer`: 自动提取注释与类型
+- `repo-analytics`: 多维度 Git 分析与健康度评分
+- `patent-generator`: 专业级专利技术交底书生成
+- `api-doc-enhancer`: 深度语义 API 文档生成
 - `changelog-generator`: 从 Git 生成变更日志
 - `diagram-plus`: 增强型 Mermaid 图表
 - `i18n-sync`: 多语言同步工具

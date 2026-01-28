@@ -1,7 +1,7 @@
 ---
 name: mini-wiki
 description: |
-  Automatically generate structured project Wiki from documentation, code, design files, and images.
+  Automatically generate **professional-grade** structured project Wiki from documentation, code, design files, and images.
   
   Use when:
   - User requests "generate wiki", "create docs", "create documentation"
@@ -11,18 +11,54 @@ description: |
   
   Features:
   - Smart project structure and tech stack analysis
+  - **Deep code analysis** with semantic understanding
+  - **Mermaid diagrams** for architecture, data flow, dependencies
+  - **Cross-linked documentation** network
   - Incremental updates (only changed files)
-  - Auto-generate Mermaid architecture diagrams
   - Code blocks link to source files
   - Multi-language support (zh/en)
-  - **Plugin system for plugins**
+  - **Plugin system for extensions**
   
   For Chinese instructions, see references/SKILL.zh.md
 ---
 
 # Wiki Generator
 
-Generate structured project Wiki to `.mini-wiki/` directory.
+Generate **professional-grade** structured project Wiki to `.mini-wiki/` directory.
+
+> **核心原则**：生成的文档必须 **详细、结构化、有图表、相互关联**，达到企业级技术文档标准。
+
+## 📋 Documentation Quality Standards
+
+**CRITICAL**: All generated documentation MUST meet these standards:
+
+### Content Depth
+- Every topic must have **complete context** - no bare lists or skeleton content
+- Descriptions must be **detailed and specific** - explain WHY and HOW
+- Must include **working code examples** with expected output
+- Must document **edge cases, warnings, common pitfalls**
+
+### Structure Requirements
+- Use **hierarchical headings** (H2/H3/H4) for clear information architecture
+- Important concepts in **tables** for quick reference
+- Processes visualized with **Mermaid diagrams**
+- **Cross-links** between related documents
+
+### Diagram Requirements (minimum 1-2 per document)
+| Content Type | Diagram Type |
+|--------------|--------------|
+| Architecture | `flowchart TB` with subgraphs |
+| Data/Call flow | `sequenceDiagram` |
+| State changes | `stateDiagram-v2` |
+| Class relations | `classDiagram` |
+| Dependencies | `flowchart LR` |
+
+### Document Relationships
+- Every document must have **"Related Documents"** section
+- Module docs link to: architecture position, API reference, dependencies
+- API docs link to: parent module, usage examples, type definitions
+
+---
 
 ## Output Structure
 
@@ -32,12 +68,17 @@ Generate structured project Wiki to `.mini-wiki/` directory.
 ├── meta.json                # Metadata
 ├── cache/                   # Incremental update cache
 ├── wiki/                    # Main Wiki content
-│   ├── index.md
-│   ├── architecture.md
-│   ├── getting-started.md
-│   ├── modules/
-│   ├── api/
-│   └── assets/
+│   ├── index.md             # Project homepage with overview
+│   ├── architecture.md      # System architecture with diagrams
+│   ├── getting-started.md   # Quick start guide
+│   ├── doc-map.md           # Documentation relationship map
+│   ├── modules/             # Module documentation
+│   │   ├── _index.md        # Module index
+│   │   └── <module>.md      # Individual module docs
+│   ├── api/                 # API reference
+│   │   ├── _index.md        # API index
+│   │   └── <module>.md      # Module API docs
+│   └── assets/              # Images and diagrams
 └── i18n/                    # Multi-language versions
     ├── en/
     └── zh/
@@ -72,7 +113,7 @@ Check `plugins/` directory for installed plugins:
 2. For each enabled plugin, read `PLUGIN.md` manifest
 3. Register hooks: `on_init`, `after_analyze`, `before_generate`, `after_generate`
 
-### 3. Project Analysis
+### 3. Project Analysis (Deep)
 
 Run `scripts/analyze_project.py` or analyze manually:
 
@@ -84,36 +125,386 @@ Run `scripts/analyze_project.py` or analyze manually:
 
 Save structure to `cache/structure.json`.
 
-### 4. Change Detection
+### 4. Deep Code Analysis (NEW - CRITICAL)
+
+**IMPORTANT**: For each module, you MUST read and analyze the actual source code:
+
+1. **Read source files**: Use read_file tool to read key source files
+2. **Understand code semantics**: Analyze what the code does, not just its structure
+3. **Extract detailed information**:
+   - Function purposes, parameters, return values, side effects
+   - Class hierarchies and relationships
+   - Data flow and state management
+   - Error handling patterns
+   - Design patterns used
+4. **Identify relationships**: Module dependencies, call graphs, data flow
+
+> 📖 See `references/prompts.md` → "代码深度分析" for the analysis prompt template
+
+### 5. Change Detection
 
 Run `scripts/detect_changes.py` to compare file checksums:
 - New files → Generate docs
 - Modified files → Update docs
 - Deleted files → Mark obsolete
 
-### 5. Content Generation
+### 6. Content Generation (Professional Grade)
 
-Execute `before_generate` hooks from plugins, then:
+Execute `before_generate` hooks from plugins, then generate content following **strict quality standards**:
 
-1. **Homepage**: Project overview, navigation, statistics
-2. **Architecture doc**: Mermaid diagrams, tech stack, module descriptions
-3. **Module docs**: Overview, public interfaces, usage examples
-4. **API docs**: Function signatures, parameters, returns, code links
+#### 6.1 Homepage (`index.md`)
+Must include:
+- Project badges and one-liner description
+- **2-3 paragraphs** detailed introduction (not just bullet points)
+- Architecture preview diagram (Mermaid flowchart)
+- Documentation navigation table with audience
+- Core features table with links to modules
+- Quick start code example with expected output
+- Project statistics table
+- Module overview table with links
+
+#### 6.2 Architecture Doc (`architecture.md`)
+Must include:
+- Executive summary (positioning, tech overview, architecture style)
+- **System architecture diagram** (Mermaid flowchart TB with subgraphs)
+- Tech stack table with version and selection rationale
+- **Module dependency diagram** (Mermaid flowchart)
+- Detailed module descriptions with responsibility and interfaces
+- **Data flow diagram** (Mermaid sequenceDiagram)
+- **State management diagram** (if applicable)
+- Directory structure with explanations
+- Design patterns and principles
+- Extension guide
+
+#### 6.3 Module Docs (`modules/<name>.md`)
+Each module doc must include (16 sections minimum):
+1. Module overview (2-3 paragraphs, not 2-3 sentences)
+2. Core value proposition
+3. **Architecture position diagram** (highlight current module)
+4. Feature table with related APIs
+5. File structure with responsibility descriptions
+6. **Core workflow diagram** (Mermaid flowchart)
+7. **State diagram** (if applicable)
+8. Public API overview table
+9. Detailed API documentation (signature, params, returns, examples)
+10. Type definitions with field tables
+11. Quick start code
+12. **3+ usage examples** with scenarios
+13. Best practices (do's and don'ts)
+14. Design decisions and trade-offs
+15. **Dependency diagram**
+16. Related documents links
+
+#### 6.4 API Docs (`api/<name>.md`)
+Each API doc must include:
+- Module overview with import examples
+- API overview table
+- Type definitions with property tables
+- For each function:
+  - One-liner + detailed description (3+ sentences)
+  - Function signature
+  - Parameter table with constraints and defaults
+  - Return value with possible cases
+  - Exception table
+  - **3 code examples** (basic, advanced, error handling)
+  - Warnings and tips
+  - Related APIs
+- For classes: class diagram, constructor, properties, methods
+- Usage patterns (2-3 complete scenarios)
+- FAQ section
+- Related documents
+
+#### 6.5 Getting Started (`getting-started.md`)
+Must include:
+- Prerequisites table with version requirements
+- Multiple installation methods
+- Configuration file explanation
+- Step-by-step first example
+- Next steps table
+- Common issues FAQ
+
+#### 6.6 Doc Map (`doc-map.md`)
+Must include:
+- **Document relationship diagram** (Mermaid flowchart)
+- Reading path recommendations by role
+- Complete document index
+- Module dependency matrix
 
 Execute `after_generate` hooks from plugins.
 
-### 6. Source Code Links
+### 7. Source Code Links
 
 Add source links to code blocks:
 ```markdown
 ### `functionName` [📄](file:///path/to/file.ts#L42)
 ```
 
-### 7. Save
+### 8. Save
 
 - Write wiki files to `.mini-wiki/wiki/`
 - Update `cache/checksums.json`
 - Update `meta.json` timestamp
+
+---
+
+## 🚀 Large Project Progressive Scanning
+
+**问题**：大型项目时，AI 可能只生成少量文档而没有全面覆盖所有模块。
+
+### 触发条件
+
+当项目满足以下任一条件时，必须使用渐进式扫描策略：
+- 模块数量 > 10
+- 源文件数量 > 50
+- 代码行数 > 10,000
+
+### 渐进式扫描策略
+
+```mermaid
+flowchart TB
+    A[项目分析] --> B{模块数量 > 10?}
+    B -->|是| C[启用渐进式扫描]
+    B -->|否| D[标准扫描]
+    C --> E[模块优先级排序]
+    E --> F[批次划分]
+    F --> G[逐批生成文档]
+    G --> H{还有未处理模块?}
+    H -->|是| I[保存进度]
+    I --> J[提示用户继续]
+    J --> G
+    H -->|否| K[生成索引和关系图]
+```
+
+### 执行步骤
+
+#### Step 1: 模块优先级排序
+按以下维度计算优先级分数：
+
+| 维度 | 权重 | 说明 |
+|------|------|------|
+| 入口点 | 5 | main.py, index.ts 等 |
+| 被依赖次数 | 4 | 被其他模块 import 的次数 |
+| 代码行数 | 2 | 较大的模块优先 |
+| 有现有文档 | 3 | README 或 docs 存在 |
+| 最近修改 | 1 | 最近修改的优先 |
+
+#### Step 2: 批次划分
+```yaml
+batch_config:
+  batch_size: 5              # 每批处理 5 个模块
+  pause_between_batches: true # 批次间暂停确认
+  auto_continue: false        # 是否自动继续下一批
+```
+
+#### Step 3: 进度跟踪
+在 `cache/progress.json` 中记录：
+```json
+{
+  "version": "2.0.0",
+  "total_modules": 25,
+  "completed_modules": ["core", "utils", "api"],
+  "pending_modules": ["auth", "db", ...],
+  "current_batch": 2,
+  "last_updated": "2026-01-28T21:15:00Z",
+  "quality_version": "professional-v2"
+}
+```
+
+#### Step 4: 断点续传
+当用户说 "继续生成 wiki" 或 "continue wiki generation" 时：
+1. 读取 `cache/progress.json`
+2. 跳过已完成的模块
+3. 从下一批次继续
+
+### 用户交互提示
+
+每批次完成后，向用户报告：
+```
+✅ 第 2 批完成 (10/25 模块)
+
+已生成:
+- modules/auth.md
+- modules/db.md
+- modules/cache.md
+- modules/queue.md
+- modules/events.md
+
+待处理: 15 个模块
+预计还需: 3 批次
+
+👉 输入 "继续" 生成下一批，或 "跳过 <模块名>" 跳过特定模块
+```
+
+### 配置选项
+
+```yaml
+# .mini-wiki/config.yaml
+progressive:
+  enabled: auto               # auto / always / never
+  batch_size: 5               # 每批模块数
+  auto_continue: false        # 自动继续无需确认
+  priority_weights:           # 自定义优先级权重
+    entry_point: 5
+    dependency_count: 4
+    code_lines: 2
+    has_docs: 3
+    recent_modified: 1
+  skip_modules:               # 跳过的模块
+    - __tests__
+    - examples
+```
+
+---
+
+## 🔄 Documentation Upgrade & Refresh
+
+**问题**：升级 mini-wiki 后，之前生成的低质量文档需要刷新升级。
+
+### 版本检测机制
+
+在 `meta.json` 中记录文档生成版本：
+```json
+{
+  "generator_version": "2.0.0",
+  "quality_standard": "professional-v2",
+  "generated_at": "2026-01-28T21:15:00Z",
+  "modules": {
+    "core": {
+      "version": "1.0.0",
+      "quality": "basic",
+      "sections": 6,
+      "has_diagrams": false,
+      "last_updated": "2026-01-20T10:00:00Z"
+    }
+  }
+}
+```
+
+### 质量评估标准
+
+| 质量等级 | 章节数 | 图表数 | 示例数 | 交叉链接 |
+|---------|--------|--------|--------|----------|
+| `basic` | < 8 | 0 | 0-1 | 无 |
+| `standard` | 8-12 | 1 | 1-2 | 部分 |
+| `professional` | 13-16 | 2+ | 3+ | 完整 |
+
+### 升级触发条件
+
+```mermaid
+flowchart TB
+    A[检测 .mini-wiki/] --> B{meta.json 存在?}
+    B -->|否| C[全新生成]
+    B -->|是| D[读取版本信息]
+    D --> E{版本 < 2.0.0?}
+    E -->|是| F[标记需要升级]
+    E -->|否| G{quality != professional?}
+    G -->|是| F
+    G -->|否| H[增量更新]
+    F --> I[生成升级计划]
+    I --> J[提示用户确认]
+```
+
+### 升级策略
+
+#### 策略 1: 全量刷新 (`refresh_all`)
+适用于：版本差异大、文档质量差
+```
+用户命令: "刷新全部 wiki" / "refresh all wiki"
+```
+
+#### 策略 2: 渐进式升级 (`upgrade_progressive`)
+适用于：模块多、希望保留部分内容
+```
+用户命令: "升级 wiki" / "upgrade wiki"
+```
+
+#### 策略 3: 选择性升级 (`upgrade_selective`)
+适用于：只想升级特定模块
+```
+用户命令: "升级 core 模块文档" / "upgrade core module docs"
+```
+
+### 升级执行流程
+
+#### Step 1: 扫描现有文档
+```python
+# 伪代码
+for doc in existing_docs:
+    score = evaluate_quality(doc)
+    if score.sections < 10 or not score.has_diagrams:
+        mark_for_upgrade(doc, priority=HIGH)
+    elif score.sections < 13:
+        mark_for_upgrade(doc, priority=MEDIUM)
+```
+
+#### Step 2: 生成升级报告
+```
+📊 Wiki 升级评估报告
+
+当前版本: 1.0.0 (basic)
+目标版本: 2.0.0 (professional)
+
+需要升级的文档:
+┌─────────────────┬──────────┬────────┬─────────┬──────────┐
+│ 文档            │ 当前章节 │ 目标   │ 缺少图表│ 优先级   │
+├─────────────────┼──────────┼────────┼─────────┼──────────┤
+│ modules/core.md │ 6        │ 16     │ 是      │ 🔴 高    │
+│ modules/api.md  │ 8        │ 16     │ 是      │ 🔴 高    │
+│ modules/utils.md│ 10       │ 16     │ 否      │ 🟡 中    │
+│ architecture.md │ 5        │ 12     │ 是      │ 🔴 高    │
+└─────────────────┴──────────┴────────┴─────────┴──────────┘
+
+👉 输入 "确认升级" 开始，或 "跳过 <文档>" 排除特定文档
+```
+
+#### Step 3: 保留与合并
+升级时保留：
+- 用户手动添加的内容（通过 `<!-- user-content -->` 标记）
+- 自定义配置
+- 历史版本备份到 `cache/backup/`
+
+#### Step 4: 渐进式升级执行
+```
+🔄 正在升级 modules/core.md (1/8)
+
+升级内容:
+  ✅ 扩展模块概述 (2句 → 3段)
+  ✅ 添加架构位置图
+  ✅ 添加核心工作流图
+  ✅ 扩展 API 文档 (添加3个示例)
+  ✅ 添加最佳实践章节
+  ✅ 添加设计决策章节
+  ✅ 添加依赖关系图
+  ✅ 添加相关文档链接
+
+章节数: 6 → 16 ✅
+图表数: 0 → 3 ✅
+```
+
+### 配置选项
+
+```yaml
+# .mini-wiki/config.yaml
+upgrade:
+  auto_detect: true           # 自动检测需要升级的文档
+  backup_before_upgrade: true # 升级前备份
+  preserve_user_content: true # 保留用户自定义内容
+  user_content_marker: "<!-- user-content -->"
+  upgrade_strategy: progressive  # all / progressive / selective
+  min_quality: professional   # 最低质量要求
+```
+
+### 用户命令
+
+| 命令 | 说明 |
+|------|------|
+| `检查 wiki 质量` / `check wiki quality` | 生成质量评估报告 |
+| `升级 wiki` / `upgrade wiki` | 渐进式升级低质量文档 |
+| `刷新全部 wiki` / `refresh all wiki` | 重新生成所有文档 |
+| `升级 <模块> 文档` / `upgrade <module> docs` | 升级特定模块 |
+| `继续升级` / `continue upgrade` | 继续未完成的升级 |
+
+---
 
 ## Plugin System
 
@@ -170,8 +561,22 @@ Plugins support hooks:
 ## References
 
 See `references/` directory for detailed templates and prompts:
-- **[prompts.md](references/prompts.md)**: AI prompt templates
-- **[templates.md](references/templates.md)**: Wiki page templates
+- **[prompts.md](references/prompts.md)**: AI prompt templates for professional-grade content generation
+  - 通用质量标准 (Universal quality standards)
+  - 代码深度分析 (Deep code analysis)
+  - 模块文档 (Module documentation - 16 sections)
+  - 架构文档 (Architecture documentation)
+  - API 文档 (API reference)
+  - 首页 (Homepage)
+  - 关系图谱 (Document relationship map)
+- **[templates.md](references/templates.md)**: Wiki page templates with Mermaid diagrams
+  - 首页模板 (Homepage template)
+  - 架构文档模板 (Architecture template)
+  - 模块文档模板 (Module template - comprehensive)
+  - API 参考模板 (API reference template)
+  - 快速开始模板 (Getting started template)
+  - 文档索引模板 (Doc map template)
+  - 配置模板 (Config template)
 - **[plugin-template.md](references/plugin-template.md)**: Plugin format
 
 ## Configuration
@@ -180,10 +585,22 @@ See `references/` directory for detailed templates and prompts:
 
 ```yaml
 generation:
-  language: en          # zh / en / both
-  include_diagrams: true
-  include_examples: true
-  link_to_source: true
+  language: zh              # zh / en / both
+  detail_level: detailed    # minimal / standard / detailed
+  include_diagrams: true    # Generate Mermaid diagrams
+  include_examples: true    # Include code examples
+  link_to_source: true      # Link to source files
+  min_sections: 10          # Minimum sections per module doc
+
+diagrams:
+  architecture_style: flowchart TB
+  dataflow_style: sequenceDiagram
+  use_colors: true          # Color-code module types
+
+linking:
+  auto_cross_links: true    # Auto-generate cross references
+  generate_doc_map: true    # Generate doc-map.md
+  generate_dependency_graph: true
 
 exclude:
   - node_modules

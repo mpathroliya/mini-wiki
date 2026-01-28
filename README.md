@@ -5,11 +5,11 @@
 <br>
 
 [![skills.sh compatible](https://img.shields.io/badge/skills.sh-compatible-blue?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0wIDE4Yy00LjQxIDAtOC0zLjU5LTgtOHMzLjU5LTggOC04IDggMy41OSA4IDgtMy41OSA4LTggOHoiLz48L3N2Zz4=)](https://skills.sh)
-[![Version](https://img.shields.io/badge/version-2.1.0-06B6D4?style=for-the-badge)](https://github.com/trsoliu/mini-wiki/releases)
+[![Version](https://img.shields.io/badge/version-3.0.0-06B6D4?style=for-the-badge)](https://github.com/trsoliu/mini-wiki/releases)
 [![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/trsoliu/mini-wiki?style=for-the-badge&color=yellow)](https://github.com/trsoliu/mini-wiki)
 
-**Transform your codebase into beautiful, structured documentation with AI** 🚀
+**Transform your codebase into professional-grade, structured documentation with AI** 🚀
 
 [📖 中文文档](README.zh.md) · [🐛 Report Bug](https://github.com/trsoliu/mini-wiki/issues) · [✨ Request Feature](https://github.com/trsoliu/mini-wiki/issues)
 
@@ -19,7 +19,7 @@
 
 ## ✨ What is Mini-Wiki?
 
-Mini-Wiki is a [skills.sh](https://skills.sh) compatible skill package that empowers AI Agents to **automatically analyze your project structure** and generate comprehensive, structured Wiki documentation — effortlessly.
+Mini-Wiki is a [skills.sh](https://skills.sh) compatible skill package that empowers AI Agents to **deeply analyze your codebase** and generate **professional-grade**, structured Wiki documentation with diagrams, cross-links, and detailed explanations — effortlessly.
 
 <table>
 <tr>
@@ -35,10 +35,12 @@ Mini-Wiki is a [skills.sh](https://skills.sh) compatible skill package that empo
 <td width="50%">
 
 ### 🎉 After Mini-Wiki
-- AI generates docs automatically ✨
+- AI generates **professional-grade** docs ✨
 - Incremental updates keep docs fresh 🔄
 - Beautiful Mermaid diagrams 📈
 - Code blocks link to source 🎯
+- **Deep code analysis** for detailed content 🔬
+- **Cross-linked** documentation network 🔗
 
 </td>
 </tr>
@@ -162,9 +164,9 @@ Mini-Wiki uses an **Instruction-based Plugin System**. When you run a task:
 
 - `code-complexity`: Code health & complexity analysis
 - `paper-drafter`: Generate academic paper drafts (LaTeX/IMRaD)
-- `repo-analytics`: Git stats, contributors & churn
-- `patent-generator`: Generate patent draft from code & wiki
-- `api-doc-enhancer`: Auto-extract comments & types
+- `repo-analytics`: Multi-dimensional Git analytics & health scoring
+- `patent-generator`: Professional patent disclosure generator
+- `api-doc-enhancer`: Deep semantic API documentation
 - `changelog-generator`: Generate changelog from git
 - `diagram-plus`: Enhanced Mermaid diagrams
 - `i18n-sync`: Multi-language sync
