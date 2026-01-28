@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.2] - 2026-01-28
+
+### 🚀 Documentation Quality Enhancement
+
+对比 Qoder 等竞品文档质量后，大幅强化文档生成标准：
+
+- **🔴 源码追溯**：每个章节末尾必须包含 `Section sources` 和 `Diagram sources` 引用
+- **🔴 classDiagram 强制**：每个核心类/接口必须生成详细类图（含属性+方法）
+- **🔴 模块文档结构**：强制 9 个必需章节（概述、核心功能、最佳实践、性能优化、错误处理等）
+- **🔴 最小行数要求**：模块文档最少 200+ 行
+- **图表要求提升**：从 1-2 个提升到 2-3 个/文档
+
+---
+
 ## [3.0.1] - 2026-01-28
 
 ### 📝 Documentation Improvements
