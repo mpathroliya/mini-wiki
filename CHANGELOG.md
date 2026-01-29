@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.4] - 2026-01-29
+
+### 📦 Batch Generation Mechanism
+
+解决一次性生成多文档导致质量稀释的问题：
+
+- **批次大小调整**：从 5 个模块减少到 **2-3 个模块/批次**
+- **质量门槛强化**：每个文档 ≥200 行、≥9 章节、≥2 图表
+- **每批质量检查**：生成后自动运行 `check_quality.py`
+- **质量未达标处理**：重新生成或补充缺失内容
+- **用户交互改进**：显示行数和质量等级
+
+**核心理念**：Token 有限 → 减少批次大小 → 最大化单文档质量
+
+---
+
 ## [3.0.3] - 2026-01-28
 
 ### 🔍 Quality Check System
