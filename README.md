@@ -222,6 +222,9 @@ All content is generated to `.mini-wiki/` directory:
     └── zh/
 ```
 
+> [!TIP]
+> It is recommended to add `.mini-wiki/` to your `.gitignore` file to avoid committing generated content to your repository.
+
 ---
 
 ## 🏗️ Skill Structure
