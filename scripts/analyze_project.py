@@ -57,10 +57,58 @@ CODE_EXTENSIONS = {
 }
 
 
+
+def detect_package_manager(root_path: Path) -> List[str]:
+    """检测包管理器"""
+    managers = []
+    if (root_path / 'package-lock.json').exists():
+        managers.append('npm')
+    if (root_path / 'yarn.lock').exists():
+        managers.append('yarn')
+    if (root_path / 'pnpm-lock.yaml').exists():
+        managers.append('pnpm')
+    if (root_path / 'bun.lockb').exists():
+        managers.append('bun')
+    return managers
+
+
+def detect_monorepo_tools(root_path: Path) -> List[str]:
+    """检测 Monorepo 工具"""
+    tools = []
+    
+    # workspace configs
+    if (root_path / 'pnpm-workspace.yaml').exists():
+        tools.append('pnpm-workspaces')
+        if 'monorepo' not in tools: tools.append('monorepo')
+        
+    if (root_path / 'lerna.json').exists():
+        tools.append('lerna')
+        if 'monorepo' not in tools: tools.append('monorepo')
+        
+    if (root_path / 'turbo.json').exists():
+        tools.append('turborepo')
+        if 'monorepo' not in tools: tools.append('monorepo')
+        
+    # check package.json for workspaces
+    pkg_path = root_path / 'package.json'
+    if pkg_path.exists():
+        try:
+            with open(pkg_path, 'r', encoding='utf-8') as f:
+                pkg = json.load(f)
+                if 'workspaces' in pkg:
+                    tools.append('npm-workspaces') # or yarn/bun workspaces, generic term
+                    if 'monorepo' not in tools: tools.append('monorepo')
+        except Exception:
+            pass
+            
+    return tools
+
+
 def detect_project_types(root_path: Path) -> List[str]:
     """检测项目类型"""
     types = []
     
+    # 基础文件检测
     for project_type, indicators in PROJECT_INDICATORS.items():
         for indicator in indicators:
             if '*' in indicator:
@@ -71,8 +119,65 @@ def detect_project_types(root_path: Path) -> List[str]:
                 types.append(project_type)
                 break
     
-    # 特殊检测：React/Vue 需要检查 package.json
-    if 'nodejs' in types:
+    # 检测包管理器
+    types.extend(detect_package_manager(root_path))
+    
+    # 检测 Monorepo
+    types.extend(detect_monorepo_tools(root_path))
+    
+    # Python 深度检测 (pyproject.toml)
+    pyproject_path = root_path / 'pyproject.toml'
+    if pyproject_path.exists():
+        try:
+            import tomllib  # Python 3.11+
+        except ImportError:
+            try:
+                import tomli as tomllib
+            except ImportError:
+                tomllib = None
+        
+        if tomllib:
+            try:
+                with open(pyproject_path, 'rb') as f:
+                    pyproject = tomllib.load(f)
+                    
+                    # Detect build system
+                    build_backend = pyproject.get('build-system', {}).get('build-backend', '')
+                    if 'poetry' in build_backend:
+                        types.append('poetry')
+                    elif 'pdm' in build_backend:
+                        types.append('pdm')
+                    elif 'setuptools' in build_backend:
+                        types.append('setuptools')
+                    elif 'flit' in build_backend:
+                        types.append('flit')
+                        
+                    # Detect specific python frameworks in dependencies
+                    # Poetry
+                    deps = pyproject.get('tool', {}).get('poetry', {}).get('dependencies', {})
+                    # Standard project.dependencies
+                    deps_std = pyproject.get('project', {}).get('dependencies', [])
+                    
+                    all_deps = set()
+                    if isinstance(deps, dict):
+                        all_deps.update(deps.keys())
+                    if isinstance(deps_std, list):
+                        # Simple parsing for "package>=1.0"
+                        import re
+                        for d in deps_std:
+                            match = re.match(r'^([a-zA-Z0-9_-]+)', d)
+                            if match:
+                                all_deps.add(match.group(1))
+                                
+                    if 'fastapi' in all_deps: types.append('fastapi')
+                    if 'django' in all_deps: types.append('django')
+                    if 'flask' in all_deps: types.append('flask')
+                    
+            except Exception:
+                pass
+
+    # Node.js 深度检测 (package.json)
+    if 'nodejs' in types or (root_path / 'package.json').exists():
         pkg_path = root_path / 'package.json'
         if pkg_path.exists():
             try:
@@ -90,8 +195,38 @@ def detect_project_types(root_path: Path) -> List[str]:
                         types.append('nuxt')
             except Exception:
                 pass
+
+    # Rust 深度检测 (Cargo.toml)
+    cargo_path = root_path / 'Cargo.toml'
+    if cargo_path.exists():
+        try:
+            with open(cargo_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+                # Simple TOML parsing for dependencies
+                # Note: A real TOML parser would be better but requires external lib
+                if 'actix-web' in content: types.append('actix-web')
+                if 'axum' in content: types.append('axum')
+                if 'tokio' in content: types.append('tokio')
+                if 'tauri' in content: types.append('tauri')
+                if 'rocket' in content: types.append('rocket')
+        except Exception:
+            pass
+            
+    # Go 深度检测 (go.mod)
+    go_mod_path = root_path / 'go.mod'
+    if go_mod_path.exists():
+        try:
+            with open(go_mod_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+                if 'github.com/gin-gonic/gin' in content: types.append('gin')
+                if 'github.com/labstack/echo' in content: types.append('echo')
+                if 'github.com/gofiber/fiber' in content: types.append('fiber')
+                if 'gorm.io/gorm' in content: types.append('gorm')
+        except Exception:
+            pass
     
     return list(set(types))
+
 
 
 def find_entry_points(root_path: Path, project_types: List[str]) -> List[str]:

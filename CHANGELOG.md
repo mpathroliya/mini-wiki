@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.7] - 2026-01-30
+
+### 🔧 Tech Stack Analysis Upgrade
+
+**Major upgrade to project analysis capabilities:**
+
+#### 1. Monorepo Support
+- **Detection**: Automatically identifies Monorepo structures
+- **Tools**: `turborepo`, `lerna`, `pnpm-workspaces`, `npm-workspaces`, `yarn-workspaces`
+- **Structure**: Smartly analyzes `packages/` and `apps/` directories
+
+#### 2. Deep Language Analysis
+- **Rust**: Parses `Cargo.toml` to detect frameworks (`actix-web`, `axum`, `tokio`, `tauri`, `rocket`)
+- **Go**: Parses `go.mod` to detect frameworks (`gin`, `echo`, `fiber`, `gorm`)
+- **Python**: Enhanced `pyproject.toml` support (identifies `poetry`, `pdm`, `flit` and frameworks like `fastapi`, `django`)
+- **Node.js**: Precise package manager detection (`npm`, `yarn`, `pnpm`, `bun`)
+
+---
+
 ## [3.0.6] - 2026-01-29
 
 ### 📐 Dynamic Quality Standards
